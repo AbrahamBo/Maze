@@ -4,7 +4,17 @@
 ## 项目开发环境
 本项目基于java语言编写，开发环境JDK1.7，采用MyEclips作为开发工具。
 ## 项目使用手册
-本项目包含`README.md`说明文档和java工程项目`src`文件夹，`src`文件夹中包含一级包`maze`，二级包`entity`、`service`和`test`。
-* `entity` 中存放迷宫实体类`MAZE`,包括迷宫的长宽等基本属性。
-* `service` 中存放`MazeImpl`类，其中的方法均为构建迷宫以及判断输入格式的主要业务逻辑。
-* `test` 中存放`MazeImplTest`测试类，应用**Junit**标签`@Test`进行单元测试。测试迷宫业务逻辑是否实现完整功能。
+本项目包含`README.md`说明文档和java工程项目`src`文件夹，`src`文件夹中包含一级包`maze`，二级包`entity`、`service`和`test`。`entity`为持久层,其实例仅可被`service`业务逻辑层调用，而`service`层实例仅可被`test`层调用。
+* `entity` 包中存放迷宫实体类`Maze`,包括迷宫的长宽等基本属性。
+* `service` 包中存放`MazeImpl`类，其中的方法均为构建迷宫以及判断输入格式的主要业务逻辑。
+* `test` 包中存放`MazeImplTest`测试类，应用**Junit**标签`@Test`进行单元测试。测试迷宫业务逻辑是否实现完整功能。
+----
+在`Maze`实体类中：
+* 参数roadGridR 和 roadGridC：为构建迷宫的道路网格行数和列数，及其get和set方法。
+* 参数int[][] maze: 为二维初始化迷宫数组
+* 构造方法Maze(int r, int c)： 通过道路网格行列，创建初始化迷宫对象，道路网格点置为**1**，墙点置为**0**。
+----
+在MazeImpl类中：
+* 全局参数maze： 构建maze对象。
+* creMazeRoad(String gridSize, String gridPath)方法： 输入正确格式的字符串，构建迷宫，并存于maze对象中。其中，gridSize为道路网格尺寸，gridPath为连通路径。
+* printMaze()方法：
