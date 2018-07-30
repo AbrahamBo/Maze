@@ -17,4 +17,28 @@
 在MazeImpl类中：
 * 全局参数maze： 构建maze对象。
 * creMazeRoad(String gridSize, String gridPath)方法： 输入正确格式的字符串，构建迷宫，并存于maze对象中。其中，gridSize为道路网格尺寸，gridPath为连通路径。
-* printMaze()方法：
+* printMaze()方法：打印迷宫对象，迷宫二维数组中存为0的点打印为 **[W]** ,存为1的点打印为 **[R]** 。
+* isNumFormat(String gridSize, String gridPath)方法：输入道路网格和连通路径字符串，判断是否可转化为数字。
+* isCommFormat(String gridSize, String gridPath)方法：判断输入字符串是否符合输入格式。
+* isOutRange(String gridSize, String gridPath)方法： 判断输入字符串是否有数字超过允许范围。
+* isMazeFormat(String gridPath)方法： 判断输入字符串路径信息是否可以连通，如0,1 0,2可以连通,o,1 0,3不能连通。
+* isCorrectInput(String gridSize, String gridPath)方法： 先判断输入字符串是否为空，若为空则返回，若不为空，则依次执行上述4个判断输入数据是否符合规范的方法。在程序中仅需执行该函数，即可判断输入是否符合规范。
+----
+在MazeImplTest类中，应用Junit标签@Test来进行测试，测试时鼠标右键点击MazeImplTest的不同方法，选择Run as->Junit Test，进行单元测试。
+单元测试中通过给定测试字符串，测试程序完整性。也可通过获取键盘输入进行测试数据的输入，该代码在程序中被注释。
+## 单元测试
+* testCreMazeRoad() :对执行构建迷宫的方法进行测试。输入`String gridSize = "3 3"; String gridPath = "0,1 0,2;0,0 1,0;0,1 1,1;0,2 1,2;1,0 1,1;1,1 1,2;1,1 2,1;1,2 2,2;2,0 2,1";`可得到正确字符串矩阵。
+* testIsNumFormat()：判断是否可转化为数字。输入`String gridSize = "- 3";
+		String gridPath = "0,a x,2;0,0 1,0;0,1 1,1;0,2 1,2;1,0 1,1;1,1 1,2";`,报错”Invalid number format .“。
+* testIsCommFormat()：输入`String gridSize = "3 3";
+		String gridPath = "0 1;0 2   0,0 1,0   0 1;1 1";`,报错“Incorrect command format ”。
+* testIsOutRange()： 输入`String gridSize = "3 3";
+		String gridPath = "6,1 5,1;0,0 1,0";` ，报错"Number out of range ."。
+* testIsMazeFormat()：输入`String gridSize = "3 3";
+		String gridPath = "0,1 2,2;0,3 1,0";`报错"Maze format error."。
+* testIsCorrectInput()： 输入`String gridSize = "4 [[";
+		String gridPath = "0,100 2,2;0,3 1,0;;";` ，仅报错”Invalid number format .“。
+## 作者
+刘彦伯 
+电话：15910572286
+邮箱: 1264803611@qq.com
